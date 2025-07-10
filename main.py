@@ -16,10 +16,11 @@ SOCKET_HOST = "localhost"
 SOCKET_PORT = 5000
 
 try:
-    with open(BASE_DIR / "storage/data.json", 'r') as file:
+    with open(BASE_DIR / "storage/data.json", "r") as file:
         STORAGE_DATA = json.load(file)
-except json.decoder.JSONDecodeError:
+except (json.decoder.JSONDecodeError, FileNotFoundError):
     STORAGE_DATA = []
+
 
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
